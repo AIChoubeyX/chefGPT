@@ -20,20 +20,20 @@ export default function Home() {
                 className="relative w-full flex flex-col items-center justify-center text-center px-4 py-14 md:py-20 overflow-hidden"
                 style={{ minHeight: '380px' }}
             >
-                {/* Background image */}
+                {/* Background image — full, sharp, uncropped */}
                 <img
                     src={heroBg}
                     alt="Cooking illustration background"
-                    className="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
-                    style={{ zIndex: 0 }}
+                    className="absolute inset-0 w-full h-full select-none pointer-events-none"
+                    style={{ zIndex: 0, objectFit: 'cover', objectPosition: 'center' }}
                 />
-                {/* Dark overlay so text stays readable */}
+                {/* Light vignette — only dark at very edges so image stays visible */}
                 <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
                         zIndex: 1,
                         background:
-                            'radial-gradient(ellipse at center, rgba(15,36,24,0.55) 0%, rgba(15,36,24,0.82) 100%)',
+                            'linear-gradient(to bottom, rgba(10,28,18,0.35) 0%, rgba(10,28,18,0.1) 40%, rgba(10,28,18,0.1) 60%, rgba(10,28,18,0.55) 100%)',
                     }}
                 />
 
@@ -45,7 +45,8 @@ export default function Home() {
                         Powered by AI
                     </div>
 
-                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight drop-shadow-lg">
+                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight"
+                        style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.9)' }}>
                         Delicious{' '}
                         <span className="text-[#aae0c2]">AI-Generated</span>
                         <br />
@@ -53,7 +54,7 @@ export default function Home() {
                     </h1>
 
                     {/* Feature list */}
-                    <div className="flex flex-col gap-3 text-base md:text-lg mb-10 items-start text-left bg-black/20 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl max-w-xl mx-auto">
+                    <div className="flex flex-col gap-3 text-base md:text-lg mb-10 items-start text-left bg-black/50 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl max-w-xl mx-auto">
                         <div className="flex items-center gap-3 opacity-90">
                             <Wand2 className="text-[#aae0c2] shrink-0" size={20} />
                             <span>Instantly create unique recipes using advanced AI technology</span>
