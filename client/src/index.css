@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-green-start text-white min-h-screen font-outfit;
+    background: radial-gradient(circle at center, #295b3f 0%, #1c3d2a 60%, #0f2418 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+}
+
+/* Background overlay decorations */
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 20% 40%, rgba(200, 255, 200, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(150, 250, 150, 0.03) 0%, transparent 40%);
+  z-index: -1;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f2418;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
