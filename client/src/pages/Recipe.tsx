@@ -80,7 +80,8 @@ export default function Recipe() {
             setLoading(true);
             setError('');
             try {
-                const response = await fetch('http://localhost:5000/api/recipe', {
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+                const response = await fetch(`${API_URL}/api/recipe`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ ingredients }),
