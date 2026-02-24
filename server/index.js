@@ -7,21 +7,16 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-    'http://localhost:5173',
-    'http://localhost:3000',
-    process.env.CLIENT_URL, // e.g. https://chefgpt.vercel.app
-].filter(Boolean);
-
+// Open CORS — this API is public and uses no cookies/auth headers,
+// so wildcard origin is safe and avoids env-var configuration issues.
 app.use(cors({
-    origin: (origin, callback) => {
-        // Allow requests with no origin (e.g. Render health checks, curl)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.includes(origin)) return callback(null, true);
-        return callback(new Error(`CORS: origin '${origin}' not allowed`));
-    },
-    credentials: true,
+    origin: '*',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+// Explicitly handle preflight requests for all routes
+app.options('*', cors());
 
 app.use(express.json());
 
